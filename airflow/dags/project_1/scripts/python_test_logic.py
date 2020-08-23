@@ -5,11 +5,20 @@ from datetime import date,timedelta
 
 # Third Party Lib
 import pandas as pd
+from pandas.util.testing import makeDataFrame
 
+log = logging.getLogger(__name__)
+output_path = '/usr/local/airflow/dags/project_1/data'
+
+if os.path.isdir(output_path):
+    os.chdir(output_path)
+else:
+    os.mkdir(output_path)
+    os.chdir(output_path)
 
 def get_data():
-    l = pd.read_html('https://en.wikipedia.org/wiki/List_of_2020_Indian_Premier_League_personnel_changes')
-    d = l[7]
-    print(os.getcwd())
-    d.to_csv('ipl.csv')
-    return 
+    log.info('Reading data')
+    d = makeDataFrame()
+    d.to_csv(output_path+'/ipl.csv')
+    log.info('Data placed in folder')
+    return

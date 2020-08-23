@@ -9,6 +9,8 @@ args = {
     'owner': 'Airflow',
     'start_date': days_ago(3),
     'ScheduleInterval': '0 * * * *'
+    # 'email': ['rakeshbhat9@gmail.com'],
+    # 'email_on_failure': True
 }
 
 dag = DAG(
